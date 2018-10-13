@@ -10,14 +10,16 @@ namespace GoData.Api.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class WebHookController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        [AllowAnonymous]
+        [HttpPost]
+        public ContentResult Post(Dictionary<string, string> @params)
         {
-            return new string[] { "value1", "value2" };
+            return Content("END Welcome to GoData Analytica, please enter your Form Id");
         }
+
+        // GET api/values
 
         // GET api/values/5
         [HttpGet("{id}")]
