@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GoData.Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoData.Data.Contexts
 {
@@ -11,5 +9,13 @@ namespace GoData.Data.Contexts
         {
 
         }
+
+        public DbSet<DataForm> DataForms { get; set; }
+
+        public DbSet<FormTemplate> FormTemplates { get; set; }
+
+        public DbSet<Organization> Organizations { get; set; }
+
+        public DbSet<OrganizationMember> OrganizationMembers { get; set; }
     }
 }
