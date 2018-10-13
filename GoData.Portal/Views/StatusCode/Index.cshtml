@@ -1,0 +1,62 @@
+﻿@model int
+@{
+    Layout = null;
+    var statusCode = Model;
+    var statusmessage = "";
+    switch (statusCode)
+    {
+        case 400:
+            statusmessage = "Bad request: The request cannot be fulfilled due to bad syntax";
+            break;
+        case 403:
+            statusmessage = "Forbidden";
+            break;
+        case 404:
+            statusmessage = "Page not found";
+            break;
+        case 408:
+            statusmessage = "The server timed out waiting for the request";
+            break;
+        case 500:
+            statusmessage = "Internal Server Error - server was unable to finish processing the request";
+            break;
+        default:
+            statusmessage = "That’s odd... Something we didn't expect happened";
+            break;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from flatfull.com/themes/apply/html/505.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Oct 2018 12:24:16 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <title>GoData Analytica</title>
+    <meta name="description" content="Responsive, Bootstrap, BS4">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" href="http://flatfull.com/themes/apply/assets/images/logo.svg">
+    <meta name="apple-mobile-web-app-title" content="Flatkit">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" href="http://flatfull.com/themes/apply/assets/images/logo.svg">
+    <link href="~/css/app.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="d-flex flex align-items-center h-v">
+        <div class="text-center p-5 w-100">
+            <h1 class="display-5 my-5 text-theme">@statusmessage</h1>
+            <p>
+                Go back to <a href="#" class="b-b b-white">home</a> or <a href="#" class="b-b b-white">contact us</a>
+                about a problem.
+            </p>
+            <p class="my-5 text-muted h4">-- @statusCode --</p>
+        </div>
+    </div>
+    <script src="~/js/app.min.js"></script>
+</body>
+</html>
