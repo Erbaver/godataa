@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoData.Portal", "GoData.Por
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoData.Portal.Tests", "GoData.Portal.Tests\GoData.Portal.Tests.csproj", "{0869F448-BF30-4FC1-B842-58F690C43DFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoData.Portal.Admin", "GoData.Portal.Admin\GoData.Portal.Admin.csproj", "{4345D3AC-F3EB-4A3D-AA67-0D8C261EECFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{0869F448-BF30-4FC1-B842-58F690C43DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0869F448-BF30-4FC1-B842-58F690C43DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0869F448-BF30-4FC1-B842-58F690C43DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4345D3AC-F3EB-4A3D-AA67-0D8C261EECFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4345D3AC-F3EB-4A3D-AA67-0D8C261EECFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4345D3AC-F3EB-4A3D-AA67-0D8C261EECFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4345D3AC-F3EB-4A3D-AA67-0D8C261EECFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{DF478204-FD34-4C9C-94C4-6A2E7C48B3A4} = {B1CC9BEA-D4E5-48BF-A14A-7259FEF7BAE6}
 		{2FD2294C-B2B0-435E-92A4-77B344474E1C} = {D6D3C1A1-7DF1-4DBD-9FBC-AC6629A21E34}
 		{0869F448-BF30-4FC1-B842-58F690C43DFE} = {B1CC9BEA-D4E5-48BF-A14A-7259FEF7BAE6}
+		{4345D3AC-F3EB-4A3D-AA67-0D8C261EECFC} = {D6D3C1A1-7DF1-4DBD-9FBC-AC6629A21E34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B3D8645-90A0-4E9F-874F-B2BEE5F8BE74}
