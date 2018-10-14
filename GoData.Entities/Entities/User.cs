@@ -5,9 +5,9 @@ namespace GoData.Entities.Entities
     public class User : BaseEntity
     {
         
-        public int UserObjectId { get; set; }
+        public string UserObjectId { get; set; }
 
-        public List<Role> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
 
         public virtual ICollection<OrganizationMember> Organizations { get; set; }
 

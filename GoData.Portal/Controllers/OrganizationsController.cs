@@ -5,8 +5,6 @@ using GoData.Portal.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GoData.Portal.Controllers
@@ -15,14 +13,17 @@ namespace GoData.Portal.Controllers
     public class OrganizationsController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly OrganizationLogic _logic;
+        private readonly OrganizationLogic _organizationLogic;
+        private readonly UserLogic _userLogic;
 
         public OrganizationsController(
             IMapper mapper,
-            OrganizationLogic logic)
+            OrganizationLogic organizationlogic,
+            UserLogic userLogic)
         {
             _mapper = mapper;
-            _logic = logic;
+            _organizationLogic = organizationlogic;
+            _userLogic = userLogic;
         }
         //returns page with all organizations
         public IActionResult Index()
@@ -47,42 +48,75 @@ namespace GoData.Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                //check if user exists
+
                 var organization = _mapper.Map<Organization>(model);
-
-                organization = await _logic.CreateOrganization(organization);
-
-                var userClaims = User.Identity as System.Security.Claims.ClaimsIdentity;
-
-                string ObjectId = userClaims?.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
+                organization.Units = new List<OrganizationUnit>();
+                organization.Members = new List<OrganizationMember>();
 
                 var unit = new Unit
                 {
-                    //OrganizationId = organization.Id,
-                    Name = "Default Unit"
+                    Name = "Default Unit",
+                    Members = new List<UnitMember>()
                 };
 
-                //TODO Save Unit;
-
-                var roles = new List<Role>
+                organization.Units.Add(new OrganizationUnit
                 {
-                    new Role { RoleName = Entities.Enums.Roles.Admin },
-                    new Role { RoleName = Entities.Enums.Roles.DataCollector },
-                    new Role { RoleName = Entities.Enums.Roles.Owner },
-                    new Role { RoleName = Entities.Enums.Roles.QualityControl},
-                    new Role { RoleName = Entities.Enums.Roles.Reader }
-                };
+                    Unit = unit
+                });
 
-                //var user = new User
-                //{
-                //    OrganizationId = organization.Id,
-                //    Roles = roles,
-                //    UnitId = unit.Id,
-                //    UserId = ObjectId,
-                //};
+                var userClaims = User.Identity as System.Security.Claims.ClaimsIdentity;
 
-                //Save User
-                
+                string objectId = userClaims?.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
+
+                var user = _userLogic.GetUserByUserObjectId(objectId);
+
+                if (user != null)
+                {
+                    var x = user.Organizations;
+
+                    organization.Members.Add(new OrganizationMember
+                    {
+                        User = user,
+                        Organization = organization
+                    });
+
+                    unit.Members.Add(new UnitMember
+                    {
+                        User = user,
+                        Unit = unit
+                    });
+                }
+                else
+                {
+                    user = new User
+                    {
+                        UserObjectId = objectId,
+
+                        Roles = new List<Role>
+                        {
+                            new Role { RoleName = Entities.Enums.Roles.Admin },
+                            new Role { RoleName = Entities.Enums.Roles.DataCollector },
+                            new Role { RoleName = Entities.Enums.Roles.Owner },
+                            new Role { RoleName = Entities.Enums.Roles.QualityControl},
+                            new Role { RoleName = Entities.Enums.Roles.Reader }
+                        }
+                    };
+
+                    organization.Members.Add(new OrganizationMember
+                    {
+                        User = user,
+                        Organization = organization
+                    });
+
+                    unit.Members.Add(new UnitMember
+                    {
+                        User = user,
+                        Unit = unit
+                    });
+                }
+
+                organization = await _organizationLogic.CreateOrganization(organization);
 
                 return RedirectToAction(nameof(Organization), new { organization.Id });
             }

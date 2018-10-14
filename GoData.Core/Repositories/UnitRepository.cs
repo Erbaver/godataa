@@ -1,7 +1,9 @@
 ﻿using GoData.Data.Contexts;
 using GoData.Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -39,7 +41,7 @@ namespace GoData.Core.Repositories
 
         public IEnumerable<Unit> GetItems(Expression<Func<Unit, bool>> condition)
         {
-            throw new NotImplementedException();
+            return _context.Units.Where(condition);
         }
     }
 }
