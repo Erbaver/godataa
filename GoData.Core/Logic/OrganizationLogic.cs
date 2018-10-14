@@ -12,11 +12,11 @@ namespace GoData.Core.Logic
 {
     public class OrganizationLogic
     {
-        OrganizationRepository _repository;
+        IRepository<Organization> _repository;
 
-        public OrganizationLogic(DefaultContext context)
+        public OrganizationLogic(IRepository<Organization> repository)
         {
-            _repository = new OrganizationRepository(context);
+            _repository = repository;
         }
 
         public async Task<Organization> CreateOrganization(Organization organization)
@@ -33,10 +33,15 @@ namespace GoData.Core.Logic
 
         }
 
-        public IEnumerable<Organization> GetOrganizations(string objectId)
+        public IEnumerable<Organization> GetOrganizationsByUserId(string userId)
         {
-            Expression<Func<Organization, bool>> expression = o => o.OrganizationMembers.Where(m => m.UserId == objectId).FirstOrDefault().UserId == objectId;
+            Expression<Func<Organization, bool>> expression = o => o.OrganizationMembers.Where(m => m.UserId == userId).FirstOrDefault().UserId == userId;
             return _repository.GetItems(expression);
+        }
+
+        public Organization GetOrganizationById(int Id)
+        {
+            return _repository.GetItemById<int>(Id);
         }
 
     }

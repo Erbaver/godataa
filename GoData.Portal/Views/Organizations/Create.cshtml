@@ -1,0 +1,72 @@
+﻿@model GoData.Portal.Dtos.OrganizationDto
+
+@{
+
+}
+
+<div class="content-main" id="content-main">
+    <div class="padding">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-header">
+                        <h2>Add new Organization</h2>
+                        <small>
+                            Organizations give you a way to organize related forms, add teams to work with and administer control over your data collection and analysis
+                        </small>
+                    </div>
+                    <div class="box-divider m-0"></div>
+                    <div class="box-body">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" aria-describedby="organizationHelp" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                                <small id="organizationHelp"
+                                       class="form-text text-muted">
+                                    We recommend you use your organization's actual name.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Address" class="control-label"></label>
+                                <input asp-for="Address" class="form-control" aria-describedby="addressHelp" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                                <small id="addressHelp" class="form-text text-muted">
+                                    Your address must be either your registered Headquarters or your operation location
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create Organization" class="btn btn-default" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+ -->
