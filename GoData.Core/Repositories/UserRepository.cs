@@ -6,7 +6,7 @@ using GoData.Entities.Entities;
 
 namespace GoData.Core.Repositories
 {
-    public class OrganizationMemberRepository : IRepository<User>
+    public class UserRepository : IRepository<User>
     {
         public Task<User> AddItemAsync(User item)
         {

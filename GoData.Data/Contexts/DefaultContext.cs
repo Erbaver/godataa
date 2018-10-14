@@ -10,12 +10,19 @@ namespace GoData.Data.Contexts
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<DataForm> DataForms { get; set; }
 
         public DbSet<FormTemplate> FormTemplates { get; set; }
 
         public DbSet<Organization> Organizations { get; set; }
 
-        public DbSet<User> OrganizationMembers { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Unit> Units { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace GoData.Core.Repositories
         {
             await _context.AddAsync(item);
             await _context.SaveChangesAsync();
-            return GetItemById<int>(item.Id);
+            return item;
         }
 
         public bool AddItemsAsync(IEnumerable<Organization> items)

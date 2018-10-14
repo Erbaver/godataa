@@ -4,14 +4,16 @@ using GoData.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GoData.Data.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    partial class DefaultContextModelSnapshot : ModelSnapshot
+    [Migration("20181014164126_added models")]
+    partial class addedmodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +26,6 @@ namespace GoData.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 
@@ -55,8 +55,6 @@ namespace GoData.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 
@@ -89,8 +87,6 @@ namespace GoData.Data.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<DateTime>("Created");
-
                     b.Property<DateTime?>("Deleted");
 
                     b.Property<DateTime?>("Modified");
@@ -107,8 +103,6 @@ namespace GoData.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 
@@ -132,8 +126,6 @@ namespace GoData.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 
@@ -159,8 +151,6 @@ namespace GoData.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
-
                     b.Property<DateTime?>("Deleted");
 
                     b.Property<DateTime?>("Modified");
@@ -182,8 +172,6 @@ namespace GoData.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
-
                     b.Property<DateTime?>("Deleted");
 
                     b.Property<DateTime?>("Modified");
@@ -200,8 +188,6 @@ namespace GoData.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 
@@ -225,8 +211,6 @@ namespace GoData.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 

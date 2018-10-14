@@ -58,7 +58,7 @@ namespace GoData.Portal.Controllers
 
                 var unit = new Unit
                 {
-                    OrganizationId = organization.Id,
+                    //OrganizationId = organization.Id,
                     Name = "Default Unit"
                 };
 
@@ -73,13 +73,13 @@ namespace GoData.Portal.Controllers
                     new Role { RoleName = Entities.Enums.Roles.Reader }
                 };
 
-                var user = new User
-                {
-                    OrganizationId = organization.Id,
-                    Roles = roles,
-                    UnitId = unit.Id,
-                    UserId = ObjectId,
-                };
+                //var user = new User
+                //{
+                //    OrganizationId = organization.Id,
+                //    Roles = roles,
+                //    UnitId = unit.Id,
+                //    UserId = ObjectId,
+                //};
 
                 //Save User
                 

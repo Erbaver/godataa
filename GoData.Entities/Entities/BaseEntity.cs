@@ -13,7 +13,7 @@ namespace GoData.Entities.Entities
         [Key]
         public int Id { get; set; }
 
-        public DateTime Created { get; }
+        public DateTime Created { get; protected set;  }
 
         public DateTime? Modified { get; set; }
 

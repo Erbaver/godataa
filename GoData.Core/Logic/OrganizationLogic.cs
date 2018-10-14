@@ -32,7 +32,7 @@ namespace GoData.Core.Logic
 
         }
 
-        public IEnumerable<Organization> GetOrganizationsByUserId(string userId)
+        public IEnumerable<Organization> GetOrganizationsByUserId(int userId)
         {
             Expression<Func<Organization, bool>> expression = o => o.Members.Where(m => m.UserId == userId).FirstOrDefault().UserId == userId;
             return _repository.GetItems(expression);

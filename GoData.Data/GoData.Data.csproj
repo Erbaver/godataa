@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20181013131934_initial.cs" />
+    <Compile Remove="Migrations\20181014162009_robust models.cs" />
+    <Compile Remove="Migrations\20181014163017_robust models 2.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,10 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GoData.Entities\GoData.Entities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

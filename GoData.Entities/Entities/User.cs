@@ -4,12 +4,14 @@ namespace GoData.Entities.Entities
 {
     public class User : BaseEntity
     {
-        public string UserId { get; set; }
-
-        public int OrganizationId { get; set; }
-
-        public int UnitId { get; set; }
+        
+        public int UserObjectId { get; set; }
 
         public List<Role> Roles { get; set; }
+
+        public virtual ICollection<OrganizationMember> Organizations { get; set; }
+
+        public virtual ICollection<UnitMember> Units { get; set; }
+
     }
 }

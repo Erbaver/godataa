@@ -76,6 +76,7 @@ namespace GoData.Portal
 
             kernel.Bind<DefaultContext>().ToSelf().InScope(RequestScope).WithConstructorArgument("_options", new DbContextOptionsBuilder<DefaultContext>().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).Options);
             kernel.Bind<IRepository<Organization>>().To<OrganizationRepository>().InScope(RequestScope);
+            kernel.Bind<IRepository<Unit>>().To<UnitRepository>().InScope(RequestScope);
             kernel.Bind<OrganizationLogic>().ToSelf().InScope(RequestScope);
 
 

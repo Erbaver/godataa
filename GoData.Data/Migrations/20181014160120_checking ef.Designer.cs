@@ -4,14 +4,16 @@ using GoData.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GoData.Data.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    partial class DefaultContextModelSnapshot : ModelSnapshot
+    [Migration("20181014160120_checking ef")]
+    partial class checkingef
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,27 +27,17 @@ namespace GoData.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
-
                     b.Property<DateTime?>("Deleted");
 
                     b.Property<DateTime?>("Modified");
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("OrganizationId");
-
                     b.Property<string>("Response");
 
                     b.Property<int>("Status");
 
-                    b.Property<int>("UnitId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OrganizationId");
-
-                    b.HasIndex("UnitId");
 
                     b.ToTable("DataForms");
                 });
@@ -56,8 +48,6 @@ namespace GoData.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
-
                     b.Property<DateTime?>("Deleted");
 
                     b.Property<string>("FormBody");
@@ -66,17 +56,9 @@ namespace GoData.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("OrganizationId");
-
                     b.Property<int>("Status");
 
-                    b.Property<int>("UnitId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OrganizationId");
-
-                    b.HasIndex("UnitId");
 
                     b.ToTable("FormTemplates");
                 });
@@ -89,8 +71,6 @@ namespace GoData.Data.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<DateTime>("Created");
-
                     b.Property<DateTime?>("Deleted");
 
                     b.Property<DateTime?>("Modified");
@@ -102,13 +82,11 @@ namespace GoData.Data.Migrations
                     b.ToTable("Organizations");
                 });
 
-            modelBuilder.Entity("GoData.Entities.Entities.OrganizationMember", b =>
+            modelBuilder.Entity("GoData.Entities.Entities.OrganizationMembers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 
@@ -124,33 +102,7 @@ namespace GoData.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("OrganizationMember");
-                });
-
-            modelBuilder.Entity("GoData.Entities.Entities.OrganizationUnit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<DateTime?>("Deleted");
-
-                    b.Property<DateTime?>("Modified");
-
-                    b.Property<int>("OrganizationId");
-
-                    b.Property<int>("UnitId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrganizationId");
-
-                    b.HasIndex("UnitId")
-                        .IsUnique();
-
-                    b.ToTable("OrganizationUnit");
+                    b.ToTable("OrganizationMembers");
                 });
 
             modelBuilder.Entity("GoData.Entities.Entities.Role", b =>
@@ -158,8 +110,6 @@ namespace GoData.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 
@@ -182,42 +132,17 @@ namespace GoData.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
-
                     b.Property<DateTime?>("Deleted");
 
                     b.Property<DateTime?>("Modified");
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("OrganizationId");
+
                     b.HasKey("Id");
 
                     b.ToTable("Units");
-                });
-
-            modelBuilder.Entity("GoData.Entities.Entities.UnitMember", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<DateTime?>("Deleted");
-
-                    b.Property<DateTime?>("Modified");
-
-                    b.Property<int>("UnitId");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UnitId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UnitMember");
                 });
 
             modelBuilder.Entity("GoData.Entities.Entities.User", b =>
@@ -225,8 +150,6 @@ namespace GoData.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("Deleted");
 
@@ -239,33 +162,7 @@ namespace GoData.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("GoData.Entities.Entities.DataForm", b =>
-                {
-                    b.HasOne("GoData.Entities.Entities.Organization", "Organization")
-                        .WithMany("DataForms")
-                        .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("GoData.Entities.Entities.Unit", "Unit")
-                        .WithMany("DataForms")
-                        .HasForeignKey("UnitId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("GoData.Entities.Entities.FormTemplate", b =>
-                {
-                    b.HasOne("GoData.Entities.Entities.Organization", "Organization")
-                        .WithMany("FormTemplates")
-                        .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("GoData.Entities.Entities.Unit", "Unit")
-                        .WithMany("FormTemplates")
-                        .HasForeignKey("UnitId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("GoData.Entities.Entities.OrganizationMember", b =>
+            modelBuilder.Entity("GoData.Entities.Entities.OrganizationMembers", b =>
                 {
                     b.HasOne("GoData.Entities.Entities.Organization", "Organization")
                         .WithMany("Members")
@@ -278,37 +175,11 @@ namespace GoData.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("GoData.Entities.Entities.OrganizationUnit", b =>
-                {
-                    b.HasOne("GoData.Entities.Entities.Organization")
-                        .WithMany("Units")
-                        .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("GoData.Entities.Entities.Unit")
-                        .WithOne("Organization")
-                        .HasForeignKey("GoData.Entities.Entities.OrganizationUnit", "UnitId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("GoData.Entities.Entities.Role", b =>
                 {
                     b.HasOne("GoData.Entities.Entities.User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("GoData.Entities.Entities.UnitMember", b =>
-                {
-                    b.HasOne("GoData.Entities.Entities.Unit", "Unit")
-                        .WithMany("Members")
-                        .HasForeignKey("UnitId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("GoData.Entities.Entities.User", "User")
-                        .WithMany("Units")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

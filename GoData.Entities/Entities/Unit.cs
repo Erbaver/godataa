@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GoData.Entities.Entities
 {
@@ -7,9 +6,12 @@ namespace GoData.Entities.Entities
     {
         public string Name { get; set; }
 
-        public int OrganizationId { get; set; }
+        public virtual ICollection<UnitMember> Members { get; set; }
 
-        [NotMapped]
-        public List<User> UnitMembers { get; set; }
+        public virtual ICollection<DataForm> DataForms { get; set; }
+
+        public virtual ICollection<FormTemplate> FormTemplates { get; set; }
+
+        public OrganizationUnit Organization { get; set; }
     }
 }
