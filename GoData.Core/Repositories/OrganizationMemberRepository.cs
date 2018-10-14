@@ -6,29 +6,29 @@ using GoData.Entities.Entities;
 
 namespace GoData.Core.Repositories
 {
-    public class OrganizationMemberRepository : IRepository<OrganizationMember>
+    public class OrganizationMemberRepository : IRepository<User>
     {
-        public Task<OrganizationMember> AddItemAsync(OrganizationMember item)
+        public Task<User> AddItemAsync(User item)
         {
             throw new NotImplementedException();
         }
 
-        public bool AddItemsAsync(IEnumerable<OrganizationMember> items)
+        public bool AddItemsAsync(IEnumerable<User> items)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<OrganizationMember> GetAllItems()
+        public IEnumerable<User> GetAllItems()
         {
             throw new NotImplementedException();
         }
 
-        public OrganizationMember GetItemById<IDType>(IDType Id)
+        public User GetItemById<IDType>(IDType Id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<OrganizationMember> GetItems(Expression<Func<OrganizationMember, bool>> condition)
+        public IEnumerable<User> GetItems(Expression<Func<User, bool>> condition)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GoData.Entities.Entities
 {
@@ -8,6 +9,10 @@ namespace GoData.Entities.Entities
 
         public string Address { get; set; }
 
-        public List<OrganizationMember> OrganizationMembers { get; set; }
+        [NotMapped]
+        public List<User> OrganizationMembers { get; set; }
+
+        [NotMapped]
+        public List<Unit> Units { get; set; }
     }
 }

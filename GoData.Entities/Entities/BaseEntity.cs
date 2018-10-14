@@ -5,10 +5,15 @@ namespace GoData.Entities.Entities
 {
     public class BaseEntity
     {
+        public BaseEntity()
+        {
+            Created = DateTime.Now;
+        }
+
         [Key]
         public int Id { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime Created { get; }
 
         public DateTime? Modified { get; set; }
 

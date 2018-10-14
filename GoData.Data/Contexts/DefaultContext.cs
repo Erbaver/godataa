@@ -16,6 +16,6 @@ namespace GoData.Data.Contexts
 
         public DbSet<Organization> Organizations { get; set; }
 
-        public DbSet<OrganizationMember> OrganizationMembers { get; set; }
+        public DbSet<User> OrganizationMembers { get; set; }
     }
 }
