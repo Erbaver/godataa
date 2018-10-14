@@ -4,8 +4,8 @@ using System.Text;
 
 namespace GoData.Entities.Entities
 {
-    public class Roles : BaseEntity
+    public class Role : BaseEntity
     {
-        public Enums.Roles Role { get; set; }
+        public Enums.Roles RoleName { get; set; }
     }
 }

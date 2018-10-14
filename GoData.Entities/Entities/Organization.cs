@@ -10,7 +10,7 @@ namespace GoData.Entities.Entities
         public string Address { get; set; }
 
         [NotMapped]
-        public List<User> OrganizationMembers { get; set; }
+        public List<User> Members { get; set; }
 
         [NotMapped]
         public List<Unit> Units { get; set; }

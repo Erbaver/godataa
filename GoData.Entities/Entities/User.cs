@@ -1,5 +1,4 @@
-﻿using GoData.Entities.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GoData.Entities.Entities
 {
@@ -11,6 +10,6 @@ namespace GoData.Entities.Entities
 
         public int UnitId { get; set; }
 
-        public List<Roles> Roles { get; set; }
+        public List<Role> Roles { get; set; }
     }
 }

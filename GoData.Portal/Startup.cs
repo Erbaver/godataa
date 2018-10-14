@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using GoData.Core.Logic;
+﻿using GoData.Core.Logic;
 using GoData.Core.Repositories;
+using GoData.Data.Contexts;
 using GoData.Entities.Entities;
 using GoData.Portal.Extensions;
 using GoData.Portal.NinjectModules;
@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ninject;
@@ -43,10 +45,11 @@ namespace GoData.Portal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                //options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -71,12 +74,11 @@ namespace GoData.Portal
                 kernel.Bind(ctrlType).ToSelf().InScope(RequestScope);
             }
 
-            // This is where our bindings are configurated
-
-            //Repositories
-
+            kernel.Bind<DefaultContext>().ToSelf().InScope(RequestScope).WithConstructorArgument("_options", new DbContextOptionsBuilder<DefaultContext>().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).Options);
             kernel.Bind<IRepository<Organization>>().To<OrganizationRepository>().InScope(RequestScope);
             kernel.Bind<OrganizationLogic>().ToSelf().InScope(RequestScope);
+
+
 
 
             // Cross-wire required framework services

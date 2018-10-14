@@ -23,8 +23,7 @@ namespace GoData.Core.Logic
         {
             //make checks
             if(organization.Name == string.Empty ||
-                organization.Created == null ||
-                organization.OrganizationMembers.Count < 1)
+                organization.Created == null)
             {
                 throw new ArgumentException("Missing Property on organization object");
             }
@@ -35,7 +34,7 @@ namespace GoData.Core.Logic
 
         public IEnumerable<Organization> GetOrganizationsByUserId(string userId)
         {
-            Expression<Func<Organization, bool>> expression = o => o.OrganizationMembers.Where(m => m.UserId == userId).FirstOrDefault().UserId == userId;
+            Expression<Func<Organization, bool>> expression = o => o.Members.Where(m => m.UserId == userId).FirstOrDefault().UserId == userId;
             return _repository.GetItems(expression);
         }
 

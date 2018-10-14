@@ -1,14 +1,17 @@
 ﻿using AutoMapper;
 using GoData.Core.Logic;
-using GoData.Core.Repositories;
 using GoData.Entities.Entities;
 using GoData.Portal.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GoData.Portal.Controllers
 {
+    [Authorize]
     public class OrganizationsController : Controller
     {
         private readonly IMapper _mapper;
@@ -47,11 +50,41 @@ namespace GoData.Portal.Controllers
                 
                 var organization = _mapper.Map<Organization>(model);
 
-                var res = await _logic.CreateOrganization(organization);
+                organization = await _logic.CreateOrganization(organization);
 
+                var userClaims = User.Identity as System.Security.Claims.ClaimsIdentity;
 
-                //goto details action after creating organization
-                return RedirectToAction(nameof(Organization), new { res.Id });
+                string ObjectId = userClaims?.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
+
+                var unit = new Unit
+                {
+                    OrganizationId = organization.Id,
+                    Name = "Default Unit"
+                };
+
+                //TODO Save Unit;
+
+                var roles = new List<Role>
+                {
+                    new Role { RoleName = Entities.Enums.Roles.Admin },
+                    new Role { RoleName = Entities.Enums.Roles.DataCollector },
+                    new Role { RoleName = Entities.Enums.Roles.Owner },
+                    new Role { RoleName = Entities.Enums.Roles.QualityControl},
+                    new Role { RoleName = Entities.Enums.Roles.Reader }
+                };
+
+                var user = new User
+                {
+                    OrganizationId = organization.Id,
+                    Roles = roles,
+                    UnitId = unit.Id,
+                    UserId = ObjectId,
+                };
+
+                //Save User
+                
+
+                return RedirectToAction(nameof(Organization), new { organization.Id });
             }
 
             return View();
