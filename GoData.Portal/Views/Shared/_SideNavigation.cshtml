@@ -20,16 +20,23 @@
                     <ul class="nav bg">
                         <li class="nav-header"><span class="text-xs hidden-folded">Main</span></li>
                         <li>
+                            <a  asp-area="" asp-controller="" asp-action="">
+                                <span class="nav-icon">
+                                    <i class="fa fa-home"></i>
+                                </span><span class="nav-text">Home</span>
+                            </a>
+                        </li>
+                        <li>
                             <a>
                                 <span class="nav-caret"><i class="fa fa-caret-down"></i> </span><span class="nav-icon">
                                     <i class="fa fa-align-left"></i>
-                                </span><span class="nav-text">Organizations</span>
+                                </span><span class="nav-text">Units</span>
                             </a>
                             <ul class="nav-sub">
-                                <li><a href="layout.header.html"><span class="nav-text">Unilever PLC</span></a></li>
-                                <li><a href="layout.sidenav.html"><span class="nav-text">Toyota Ltd</span></a></li>
-                                <li><a href="layout.aside.html"><span class="nav-text">Elizade Ltd</span></a></li>
-                                <li><a asp-area="" asp-controller="Organizations" asp-action="Create"><span class="nav-text">Add Organization</span></a></li>
+                                <li><a href="layout.header.html"><span class="nav-text">Default Unit</span></a></li>
+                                <li><a href="layout.sidenav.html"><span class="nav-text">Data Mall</span></a></li>
+                                <li><a href="layout.aside.html"><span class="nav-text">Customer Feedback</span></a></li>
+                                <li><a asp-area="" asp-controller="" asp-action=""><span class="nav-text">New Unit</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -39,13 +46,7 @@
                                 </span><span class="nav-icon"><i class="fa fa-envelope"></i> </span><span class="nav-text">Inbox</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="app.message.html">
-                                <span class="nav-icon">
-                                    <i class="fa fa-comment"></i>
-                                </span><span class="nav-text">Messages</span>
-                            </a>
-                        </li>
+
                         <li>
                             <a href="app.user.html">
                                 <span class="nav-icon">

@@ -12,16 +12,24 @@
     <!--<link rel="shortcut icon" sizes="196x196" href="http://flatfull.com/themes/apply/assets/images/logo.svg">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href="~/css/app.min.css" rel="stylesheet" />
+    <style type="text/css">
+    /* Chart.js */
+    @@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
 </head>
-    <body>
-        <div class="app" id="app">
-            @Html.Partial("_SideNavigation")
-            <div id="content" class="app-content box-shadow-2 box-radius-2" role="main">
-                @Html.Partial("_TopNavigation")
-                @RenderBody()
-                @Html.Partial("_BottomNavigation")
-            </div>
+<body>
+    <div class="app" id="app">
+        @Html.Partial("_SideNavigation")
+        <div id="content" class="app-content box-shadow-2 box-radius-2" role="main">
+            @Html.Partial("_TopNavigation")
+            @RenderBody()
+            @Html.Partial("_BottomNavigation")
         </div>
-        <script src="~/js/app.min.js"></script>
-    </body>
+    </div>
+    <script src="~/js/app.min.js"></script>
+    <script src="~/js/moment-with-locales.min.js"></script>
+    <script src="~/js/Chart.min.js"></script>
+    <script src="~/js/jquery.chart.js"></script>
+    <script src="~/js/Chartjs.js"></script>
+    <script src="~/js/screenfull.js"></script>
+</body>
 </html>
