@@ -23,6 +23,27 @@
 </head>
 
 <body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">We will get in touch with you</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
+                    <script>
+                        hbspt.forms.create({
+                            portalId: "5025090",
+                            formId: "e5388ef2-8b37-4ea9-930b-bddb728c7576"
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- N A V B A R -->
     <nav class="navbar navbar-default navbar-expand-lg fixed-top custom-navbar">
@@ -48,7 +69,8 @@
                         <a class="nav-link" href="#channels">Collection Channels <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
                     </li>
                     <li class="nav-item nav-custom-link btn btn-demo-small">
-                        <a class="nav-link" href="#">Get in Touch <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
+                        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Get in Touch</a>
+
                     </li>
                 </ul>
             </div>
@@ -60,43 +82,19 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <h5>Seo Ranking</h5>
-                    <ul>
-                        <li><a href="#">usecases</a></li>
-                        <li><a href="#">Affiliate Program</a></li>
-                        <li><a href="#">Developer API</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Video Tutorials</a></li>
-                    </ul>
+                <div class="col-md-6">
+                    <img src="~/images/logo-white.png" />
                 </div>
                 <div class="col-md-3">
-                    <h5>Main Tools</h5>
-                    <ul>
-                        <li><a href="#">Rank Tracker</a></li>
-                        <li><a href="#">Backlink Checker</a></li>
-                        <li><a href="#">Keyword Generator</a></li>
-                        <li><a href="#">Serp Checker</a></li>
-                        <li><a href="#">Site Audit</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>Blog</h5>
-                    <ul>
-                        <li><a href="#">Get High Quality Backlinks</a></li>
-                        <li><a href="#">Top Google Searches</a></li>
-                        <li><a href="#">Avoid Google Penalties</a></li>
-                        <li><a href="#">White Hat SEO Tips</a></li>
-                        <li><a href="#">Google Trends</a></li>
-                    </ul>
+
                 </div>
                 <div class="col-md-3">
                     <h5>Company</h5>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat,
-                        velit purus euismod odio, quis vulputate velit urna.
+                        Godataa Analytica is a Data Collection collection company operating from Nigeria. We are currently building the largest
+                        agent network, providing access to even its most remote areas
                     </p>
-                    <p><a href="mailto:sales@theseocompany.com" class="external-links">sales@theseocompany.com</a></p>
+                    <p><a href="mailto:inquiry@godataa.com" class="external-links">inquiry@godataa.com</a></p>
                 </div>
             </div>
             <div class="divider"></div>
@@ -108,11 +106,12 @@
                     <a href="#"><i class="icon ion-logo-youtube"></i></a>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <small>2018 &copy; All rights reserved. Made by <a href="http://templune.com/" target="blank" class="external-links">Templune</a></small>
+                    <small>2018 &copy; All rights reserved. GoData Analytica</small>
                 </div>
             </div>
         </div>
     </footer>
+
     <!--  E N D  F O O T E R  -->
     <!-- External JavaScripts -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -122,6 +121,9 @@
             crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
             crossorigin="anonymous"></script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/5025090.js"></script>
+    <!-- End of HubSpot Embed Code -->
 </body>
 
 </html>
