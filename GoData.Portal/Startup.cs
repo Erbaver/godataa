@@ -45,6 +45,7 @@ namespace GoData.Portal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -61,6 +62,12 @@ namespace GoData.Portal
             services.AddRequestScopingMiddleware(() => scopeProvider.Value = new Scope());
             services.AddCustomControllerActivation(Resolve);
             services.AddCustomViewComponentActivation(Resolve);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://login.microsoftonline.com"));
+            });
         }
 
         private IKernel RegisterApplicationComponents(IApplicationBuilder app)
@@ -102,6 +109,8 @@ namespace GoData.Portal
                 app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
                 app.UseHsts();
             }
+
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

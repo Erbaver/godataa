@@ -36,9 +36,9 @@
 	2. Navbar
 	3. Buttons
 	4. Hero
-	5. Marketing
+	5. insights
 	6. Testimonials
-	7. Pricing
+	7. usecases
 	8. Call to Action
 	9. Footer
 	10. Media Queries
@@ -259,10 +259,13 @@ section {
     }
 
 /* ==============================================
-   5. Marketing
+   5. insights
 ===============================================*/
 
-#marketing p {
+#insights {
+    background-color: #f6f8f9;
+}
+#insights p {
     font-size: 20px;
     font-weight: 300;
     color: #8da2b5;
@@ -270,7 +273,7 @@ section {
     padding: 0px;
 }
 
-#marketing span {
+#insights span {
     font-weight: 400;
     color: #0095f7;
     text-transform: uppercase;
@@ -355,10 +358,10 @@ section {
 }
 
 /* ==============================================
-   7. Pricing
+   7. usecases
 ===============================================*/
 
-.pricing-box {
+.usecases-box {
     background-color: #ffffff;
     padding: 40px 20px;
     border: 1px solid #F8F9FB;
@@ -367,54 +370,54 @@ section {
     margin-top: 30px;
 }
 
-    .pricing-box h3 {
+    .usecases-box h3 {
         font-size: 22px;
         font-weight: 300;
         letter-spacing: .1em;
         color: #0095f7;
     }
 
-    .pricing-box h6 {
+    .usecases-box h6 {
         font-size: 60px;
         font-weight: 700;
         color: #3a3f52;
         margin-bottom: 0px;
     }
 
-    .pricing-box p {
+    .usecases-box p {
         font-size: 17px;
         margin-top: 15px;
         padding: 0px;
     }
 
-    .pricing-box ul {
+    .usecases-box ul {
         padding-left: 10px;
     }
 
-    .pricing-box li {
+    .usecases-box li {
         font-size: 14px;
         font-weight: 300;
         color: #8da2b5;
         letter-spacing: .1em;
     }
 
-    .pricing-box span {
+    .usecases-box span {
         font-weight: 500;
         color: #0095f7;
     }
 
-    .pricing-box small {
+    .usecases-box small {
         color: #8da2b5;
         letter-spacing: .2em;
     }
 
-    .pricing-box i {
+    .usecases-box i {
         font-size: 20px;
         color: #0095f7;
         margin-right: 10px;
     }
 
-    .pricing-box .demo {
+    .usecases-box .demo {
         color: #6772e5 !important;
     }
 
@@ -662,15 +665,15 @@ footer {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .pricing-box h3 {
+    .usecases-box h3 {
         font-size: 17px;
     }
 
-    .pricing-box p {
+    .usecases-box p {
         font-size: 14px;
     }
 
-    .pricing-box li {
+    .usecases-box li {
         font-size: 12px;
     }
 
