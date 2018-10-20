@@ -4,8 +4,10 @@ using GoData.Portal.Helpers;
 using GoData.Portal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace GoData.Portal.Controllers
 {
@@ -14,23 +16,31 @@ namespace GoData.Portal.Controllers
     {
         private UserLogic _userLogic;
         private UserHelper _userHelper;
-        private Dictionary<string, string>  _userProperties;
+        private OrganizationLogic _organizationLogic;
 
         public HomeController(
             UserHelper helper,
-            UserLogic userLogic)
+            UserLogic userLogic,
+            OrganizationLogic organizationLogic)
         {
             _userLogic = userLogic;
             _userHelper = helper;
+            _organizationLogic = organizationLogic;
         }
 
         public IActionResult Index()
         {
-            _userProperties = _userHelper.GetUserProperties(User);
+            var userId = Request?.Headers["User"];
 
-            var user = _userLogic.GetUserByUserObjectId(_userProperties["ObjectId"]);
-            if (user.Organizations.Count < 1)
-                return RedirectToAction("Create", nameof(OrganizationsController));
+            if(userId.HasValue)
+            {
+                var organizations =_organizationLogic.GetOrganizationsByUserId(Int32.Parse(userId.Value));
+
+                if(organizations.Count() < 1)
+                {
+                    return RedirectToAction("Create", "Organizations");
+                }
+            }
 
             return View();
         }

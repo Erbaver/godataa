@@ -74,8 +74,11 @@ namespace GoData.Portal
 
         private IKernel RegisterApplicationComponents(IApplicationBuilder app)
         {
+
             // IKernelConfiguration config = new KernelConfiguration();
             var kernel = new StandardKernel(new AutoMapperModule());
+           
+
 
             // Register application services
             foreach (var ctrlType in app.GetControllerTypes())
@@ -83,15 +86,18 @@ namespace GoData.Portal
                 kernel.Bind(ctrlType).ToSelf().InScope(RequestScope);
             }
 
-            kernel.Bind<DefaultContext>().ToSelf().InScope(RequestScope).WithConstructorArgument("_options", new DbContextOptionsBuilder<DefaultContext>().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).Options);
+            kernel.Bind<DefaultContext>().ToSelf().InScope(RequestScope)
+                .WithConstructorArgument("_options", new DbContextOptionsBuilder<DefaultContext>()
+                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).Options);
+
             kernel.Bind<IRepository<Organization>>().To<OrganizationRepository>().InScope(RequestScope);
             kernel.Bind<IRepository<Unit>>().To<UnitRepository>().InScope(RequestScope);
+            kernel.Bind<IRepository<User>>().To<UserRepository>().InScope(RequestScope);
+            kernel.Bind<UserLogic>().ToSelf().InScope(RequestScope);
             kernel.Bind<OrganizationLogic>().ToSelf().InScope(RequestScope);
             kernel.Bind<UserHelper>().ToSelf().InScope(RequestScope);
 
-
-
-
+            
             // Cross-wire required framework services
             kernel.BindToMethod(app.GetRequestService<IViewBufferScope>);
 
@@ -123,7 +129,10 @@ namespace GoData.Portal
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-            app.UseUserSetupMiddleware();
+
+            app.UseUserSetupMiddleware(Kernel.GetService(typeof(UserLogic)) as UserLogic);
+
+
 
             app.UseMvc(routes =>
             {
@@ -131,6 +140,8 @@ namespace GoData.Portal
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            
+
         }
     }
 }

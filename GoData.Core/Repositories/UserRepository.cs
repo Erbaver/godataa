@@ -17,9 +17,13 @@ namespace GoData.Core.Repositories
         {
             _context = context;
         }
-        public Task<User> AddItemAsync(User item)
+        public async Task<User> AddItemAsync(User item)
         {
-            throw new NotImplementedException();
+            await _context.Users.AddAsync(item);
+
+            await _context.SaveChangesAsync();
+
+            return item;
         }
 
         public bool AddItemsAsync(IEnumerable<User> items)

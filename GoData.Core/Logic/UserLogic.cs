@@ -2,6 +2,7 @@
 using GoData.Entities.Entities;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GoData.Core.Logic
 {
@@ -20,6 +21,17 @@ namespace GoData.Core.Logic
 
             return _repository.GetItems(expression)?.FirstOrDefault() != null 
                 ? _repository.GetItems(expression).FirstOrDefault() : null;
+        }
+
+        public async Task<User> AddUser(User user)
+        {
+            //make checks
+            if (user.UserObjectId == null || user.Roles == null)
+                throw new ArgumentNullException();
+            
+
+            return await _repository.AddItemAsync(user);
+
         }
     }
 }
