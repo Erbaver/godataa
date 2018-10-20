@@ -3,6 +3,7 @@ using GoData.Core.Repositories;
 using GoData.Data.Contexts;
 using GoData.Entities.Entities;
 using GoData.Portal.Extensions;
+using GoData.Portal.Helpers;
 using GoData.Portal.NinjectModules;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
@@ -19,6 +20,7 @@ using Ninject;
 using Ninject.Activation;
 using Ninject.Infrastructure.Disposal;
 using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace GoData.Portal
@@ -85,6 +87,7 @@ namespace GoData.Portal
             kernel.Bind<IRepository<Organization>>().To<OrganizationRepository>().InScope(RequestScope);
             kernel.Bind<IRepository<Unit>>().To<UnitRepository>().InScope(RequestScope);
             kernel.Bind<OrganizationLogic>().ToSelf().InScope(RequestScope);
+            kernel.Bind<UserHelper>().ToSelf().InScope(RequestScope);
 
 
 
@@ -110,6 +113,9 @@ namespace GoData.Portal
                 app.UseHsts();
             }
 
+            
+
+
             app.UseCors("AllowSpecificOrigin");
 
             app.UseHttpsRedirection();
@@ -117,6 +123,7 @@ namespace GoData.Portal
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseUserSetupMiddleware();
 
             app.UseMvc(routes =>
             {

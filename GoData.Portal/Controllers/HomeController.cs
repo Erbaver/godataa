@@ -1,6 +1,10 @@
-﻿using GoData.Portal.Models;
+﻿using GoData.Core.Logic;
+using GoData.Entities.Entities;
+using GoData.Portal.Helpers;
+using GoData.Portal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace GoData.Portal.Controllers
@@ -8,8 +12,26 @@ namespace GoData.Portal.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private UserLogic _userLogic;
+        private UserHelper _userHelper;
+        private Dictionary<string, string>  _userProperties;
+
+        public HomeController(
+            UserHelper helper,
+            UserLogic userLogic)
+        {
+            _userLogic = userLogic;
+            _userHelper = helper;
+        }
+
         public IActionResult Index()
         {
+            _userProperties = _userHelper.GetUserProperties(User);
+
+            var user = _userLogic.GetUserByUserObjectId(_userProperties["ObjectId"]);
+            if (user.Organizations.Count < 1)
+                return RedirectToAction("Create", nameof(OrganizationsController));
+
             return View();
         }
 

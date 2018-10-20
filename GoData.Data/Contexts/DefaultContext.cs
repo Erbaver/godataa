@@ -24,5 +24,7 @@ namespace GoData.Data.Contexts
         public DbSet<User> Users { get; set; }
 
         public DbSet<Unit> Units { get; set; }
+
+        public DbSet<Channel> Channels { get; set; }
     }
 }

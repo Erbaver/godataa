@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="PageViewModels\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>

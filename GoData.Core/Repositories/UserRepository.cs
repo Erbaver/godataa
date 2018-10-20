@@ -39,7 +39,10 @@ namespace GoData.Core.Repositories
 
         public IEnumerable<User> GetItems(Expression<Func<User, bool>> condition)
         {
-            return _context.Users.Where(condition).Include(u => u.Roles);
+            return _context.Users.Where(condition)
+                .Include(u => u.Roles)
+                .Include(u => u.Organizations)
+                .Include (u => u.Units);
         }
     }
 }

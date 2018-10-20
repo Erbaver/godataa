@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoData.Portal.Admin", "GoDa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoData.Core.Tests", "GoData.Core.Tests\GoData.Core.Tests.csproj", "{FE7CA8EE-149E-4D7D-9D9C-A2F2345CE301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoData.Website", "GoData.Website\GoData.Website.csproj", "{08B2B6FB-C20D-4F1F-BD7D-7A0A0CB00919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoData.Website", "GoData.Website\GoData.Website.csproj", "{08B2B6FB-C20D-4F1F-BD7D-7A0A0CB00919}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BotServices", "BotServices", "{2960F637-86AD-4605-803A-B980128195B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

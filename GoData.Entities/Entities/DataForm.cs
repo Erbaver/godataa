@@ -19,5 +19,10 @@ namespace GoData.Entities.Entities
         public virtual Unit Unit { get; set; }
 
         public int UnitId { get; set; }
+
+        public virtual Channel Channel { get; set; }
+
+        public int ChannelId { get; set; }
+
     }
 }
