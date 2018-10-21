@@ -9,11 +9,11 @@ namespace GoData.Entities.Entities
 
         public int DefaultOrganization { get; set; }
 
-        public virtual ICollection<Role> Roles { get; set; }
+        public ICollection<Role> Roles { get; set; }
 
-        public virtual ICollection<OrganizationMember> Organizations { get; set; }
+        public ICollection<OrganizationMember> Organizations { get; set; }
 
-        public virtual ICollection<UnitMember> Units { get; set; }
+        public ICollection<UnitMember> Units { get; set; }
 
     }
 }

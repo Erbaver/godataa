@@ -1,4 +1,5 @@
-﻿using GoData.Entities.Entities;
+﻿using GoData.Core.Logic;
+using GoData.Entities.Entities;
 using GoData.Portal.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace GoData.Portal.PageViewModels.SettingsViewModels
 {
     public class IndexPageViewModel : BasePageViewModel
     {
-        public IndexPageViewModel(int userId) : base(userId)
+        public IndexPageViewModel(int userId, UserLogic userLogic) : base(userId, userLogic)
         {
         }
 

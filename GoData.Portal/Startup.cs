@@ -92,7 +92,7 @@ namespace GoData.Portal
                 .WithConstructorArgument("_options", new DbContextOptionsBuilder<DefaultContext>()
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).Options);
 
-            
+            kernel.Bind<IRepository<UnitMember>>().To<UnitMemberRepository>().InScope(RequestScope);
             kernel.Bind<IRepository<Organization>>().To<OrganizationRepository>().InScope(RequestScope);
             kernel.Bind<IRepository<Unit>>().To<UnitRepository>().InScope(RequestScope);
             kernel.Bind<IRepository<User>>().To<UserRepository>().InScope(RequestScope);

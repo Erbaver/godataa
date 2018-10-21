@@ -1,26 +1,32 @@
 ﻿using GoData.Core.Repositories;
 using GoData.Entities.Entities;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace GoData.Core.Logic
 {
     public class UserLogic
     {
-        private UserRepository _repository;
+        private UserRepository _userRepository;
+        private UnitMemberRepository _unitMemberRepository;
 
-        public UserLogic(UserRepository repository)
+        public UserLogic(UserRepository userRepository,
+            UnitMemberRepository unitMemberRepository)
         {
-            _repository = repository;
+            _userRepository = userRepository;
+            _unitMemberRepository = unitMemberRepository;
         }
 
         public User GetUserByUserObjectId(string objectId)
         {
             System.Linq.Expressions.Expression<Func<User, bool>> expression = u => u.UserObjectId == objectId;
 
-            return _repository.GetItems(expression)?.FirstOrDefault() != null
-                ? _repository.GetItems(expression).FirstOrDefault() : null;
+            return _userRepository.GetItems(expression)?.FirstOrDefault() != null
+                ? _userRepository.GetItems(expression).FirstOrDefault() : null;
         }
 
         public async Task<User> AddUser(User user)
@@ -30,18 +36,34 @@ namespace GoData.Core.Logic
                 throw new ArgumentNullException();
 
 
-            return await _repository.AddItemAsync(user);
+            return await _userRepository.AddItemAsync(user);
 
         }
 
         public User GetUserById(int userId)
         {
-            return _repository.GetItemById<int>(userId);
+            return _userRepository.GetItemById<int>(userId);
         }
 
         public User UpdateUserAsync(User user)
         {
-            return _repository.UpdateItemAsync(user);
+            return _userRepository.UpdateItemAsync(user);
+        }
+
+        public IEnumerable<Unit> GetUserUnitsInOrganization(int userId, int organizationId)
+        {
+            List<Unit> Units = new List<Unit>();
+
+            Expression<Func<UnitMember, bool>> expression = u => u.Unit.Organization.Id == organizationId && u.UserId == userId;
+
+            var unitMembers = _unitMemberRepository.GetItems(expression);
+
+            foreach (var item in unitMembers)
+            {
+                Units.Add(item.Unit);
+            }
+
+            return Units;
         }
     }
 }

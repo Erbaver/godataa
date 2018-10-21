@@ -12,11 +12,11 @@ namespace GoData.Entities.Entities
 
         public FormTemplateStatus Status { get; set; }
 
-        public virtual Organization Organization { get; set; }
+        public Organization Organization { get; set; }
 
         public int OrganizationId { get; set; }
 
-        public virtual Unit Unit { get; set; }
+        public Unit Unit { get; set; }
 
         public int UnitId { get; set; }
 

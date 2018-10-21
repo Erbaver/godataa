@@ -12,7 +12,7 @@ namespace GoData.Entities.Entities
 
         public DataFormStatus Status { get; set; }
 
-        public virtual Organization Organization { get; set; }
+        public Organization Organization { get; set; }
 
         public int OrganizationId { get; set; }
 
@@ -20,7 +20,7 @@ namespace GoData.Entities.Entities
 
         public int UnitId { get; set; }
 
-        public virtual Channel Channel { get; set; }
+        public Channel Channel { get; set; }
 
         public int ChannelId { get; set; }
 

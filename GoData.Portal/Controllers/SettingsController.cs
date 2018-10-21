@@ -22,7 +22,7 @@ namespace GoData.Portal.Controllers
         {
             var userId = Int32.Parse(Request.Headers["User"].ToString());
 
-            var pageModel = new IndexPageViewModel(userId);
+            var pageModel = new IndexPageViewModel(userId, _userLogic);
 
 
             pageModel.Organizations = _organizationLogic.GetOrganizationsByUserId(userId);

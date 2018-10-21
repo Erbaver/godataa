@@ -7,6 +7,6 @@ namespace GoData.Portal.Interfaces
     {
         string PageName { get; set; }
 
-        List<Unit> Units { get; set; }
+        IEnumerable<Unit> Units { get; }
     }
 }

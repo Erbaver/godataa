@@ -1,4 +1,5 @@
-﻿@*
+﻿@model  GoData.Portal.Interfaces.IPageViewModel
+@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
@@ -33,9 +34,11 @@
                                 </span><span class="nav-text">Units</span>
                             </a>
                             <ul class="nav-sub">
-                                <li><a href="layout.header.html"><span class="nav-text">Default Unit</span></a></li>
-                                <li><a href="layout.sidenav.html"><span class="nav-text">Data Mall</span></a></li>
-                                <li><a href="layout.aside.html"><span class="nav-text">Customer Feedback</span></a></li>
+                                @foreach (var unit in Model.Units)
+                                {
+                                    <li><a href="layout.header.html"><span class="nav-text">@unit.Name</span></a></li>
+                                    
+                                }
                                 <li><a asp-area="" asp-controller="" asp-action=""><span class="nav-text">New Unit</span></a></li>
                             </ul>
                         </li>

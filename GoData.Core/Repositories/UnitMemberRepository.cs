@@ -1,6 +1,9 @@
-﻿using GoData.Entities.Entities;
+﻿using GoData.Data.Contexts;
+using GoData.Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +12,14 @@ namespace GoData.Core.Repositories
 {
     public class UnitMemberRepository : IRepository<UnitMember>
     {
+        private readonly DefaultContext _context;
+
+        public UnitMemberRepository(DefaultContext context)
+        {
+            _context = context;
+            
+        }
+
         public Task<UnitMember> AddItemAsync(UnitMember item)
         {
             throw new NotImplementedException();
@@ -31,7 +42,7 @@ namespace GoData.Core.Repositories
 
         public IEnumerable<UnitMember> GetItems(Expression<Func<UnitMember, bool>> condition)
         {
-            throw new NotImplementedException();
+            return _context.UnitMembers.Where(condition).Include(u => u.Unit);
         }
 
         public UnitMember UpdateItemAsync(UnitMember item)

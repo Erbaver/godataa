@@ -19,9 +19,8 @@
     @@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
 </head>
 <body>
-    <h1>@Model.PageName</h1>
     <div class="app" id="app">
-        <partial name="_SideNavigation"/>
+        <partial name="_SideNavigation", model="Model"/>
         <div id="content" class="app-content box-shadow-2 box-radius-2" role="main">
             <partial name="_TopNavigation" />
             @RenderBody()

@@ -10,21 +10,25 @@ namespace GoData.Portal.PageViewModels
 {
     public class BasePageViewModel : IPageViewModel
     {
-        [Inject]
-        private UserLogic _userLogic { get; set; }
+        
+        public UserLogic _userLogic { private get; set; }
 
-        public BasePageViewModel(int userId)
+        private int _userId;
+
+        public BasePageViewModel(int userId, UserLogic userLogic)
         {
-
+            _userId = userId;
+            _userLogic = userLogic;
         }
 
         public string PageName { get; set; }
 
-        public List<Unit> Units { get; set; }
+        public IEnumerable<Unit> Units { get { return GetUnits(_userId);  }}
 
-        public List<Unit> GetUnits(int id)
+        public IEnumerable<Unit> GetUnits(int id)
         {
-            throw new NotImplementedException();
+            int organizationId = _userLogic.GetUserById(id).DefaultOrganization;
+            return _userLogic.GetUserUnitsInOrganization(id, organizationId);
         } 
 
     }

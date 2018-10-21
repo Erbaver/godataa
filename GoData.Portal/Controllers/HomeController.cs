@@ -33,7 +33,7 @@ namespace GoData.Portal.Controllers
         {
             var userId = Int32.Parse(Request.Headers["User"].ToString());
 
-            var model = new IndexPageViewModel(userId);
+            var model = new IndexPageViewModel(userId, _userLogic);
 
             
 

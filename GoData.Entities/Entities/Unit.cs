@@ -6,11 +6,11 @@ namespace GoData.Entities.Entities
     {
         public string Name { get; set; }
 
-        public virtual ICollection<UnitMember> Members { get; set; }
+        public ICollection<UnitMember> Members { get; set; }
 
-        public virtual ICollection<DataForm> DataForms { get; set; }
+        public ICollection<DataForm> DataForms { get; set; }
 
-        public virtual ICollection<FormTemplate> FormTemplates { get; set; }
+        public ICollection<FormTemplate> FormTemplates { get; set; }
 
         public OrganizationUnit Organization { get; set; }
     }
