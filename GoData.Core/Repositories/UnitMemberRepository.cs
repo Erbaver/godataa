@@ -1,39 +1,40 @@
-﻿using System;
+﻿using GoData.Entities.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
-using GoData.Entities.Entities;
 
 namespace GoData.Core.Repositories
 {
-    public class FormTemplateRepository : IRepository<FormTemplate>
+    public class UnitMemberRepository : IRepository<UnitMember>
     {
-        public Task<FormTemplate> AddItemAsync(FormTemplate item)
+        public Task<UnitMember> AddItemAsync(UnitMember item)
         {
             throw new NotImplementedException();
         }
 
-        public bool AddItemsAsync(IEnumerable<FormTemplate> items)
+        public bool AddItemsAsync(IEnumerable<UnitMember> items)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<FormTemplate> GetAllItems()
+        public IEnumerable<UnitMember> GetAllItems()
         {
             throw new NotImplementedException();
         }
 
-        public FormTemplate GetItemById<IDType>(IDType Id)
+        public UnitMember GetItemById<IDType>(IDType Id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<FormTemplate> GetItems(Expression<Func<FormTemplate, bool>> condition)
+        public IEnumerable<UnitMember> GetItems(Expression<Func<UnitMember, bool>> condition)
         {
             throw new NotImplementedException();
         }
 
-        public FormTemplate UpdateItemAsync(FormTemplate item)
+        public UnitMember UpdateItemAsync(UnitMember item)
         {
             throw new NotImplementedException();
         }

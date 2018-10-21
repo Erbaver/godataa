@@ -2,6 +2,7 @@
 using GoData.Entities.Entities;
 using GoData.Portal.Helpers;
 using GoData.Portal.Models;
+using GoData.Portal.PageViewModels.HomePageViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,19 +31,20 @@ namespace GoData.Portal.Controllers
 
         public IActionResult Index()
         {
-            var userId = Request?.Headers["User"];
+            var userId = Int32.Parse(Request.Headers["User"].ToString());
 
-            if(userId.HasValue)
+            var model = new IndexPageViewModel(userId);
+
+            
+
+            var organizations = _organizationLogic.GetOrganizationsByUserId(userId);
+
+            if (organizations.Count() < 1)
             {
-                var organizations =_organizationLogic.GetOrganizationsByUserId(Int32.Parse(userId.Value));
-
-                if(organizations.Count() < 1)
-                {
-                    return RedirectToAction("Create", "Organizations");
-                }
+                return RedirectToAction("Create", "Organizations");
             }
 
-            return View();
+            return View(model);
         }
 
         public IActionResult About()

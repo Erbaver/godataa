@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model GoData.Portal.Interfaces.IPageViewModel
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -17,12 +19,13 @@
     @@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
 </head>
 <body>
+    <h1>@Model.PageName</h1>
     <div class="app" id="app">
-        @Html.Partial("_SideNavigation")
+        <partial name="_SideNavigation"/>
         <div id="content" class="app-content box-shadow-2 box-radius-2" role="main">
-            @Html.Partial("_TopNavigation")
+            <partial name="_TopNavigation" />
             @RenderBody()
-            @Html.Partial("_BottomNavigation")
+            <partial name="_BottomNavigation" />
         </div>
     </div>
     <script src="~/js/app.min.js"></script>

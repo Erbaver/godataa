@@ -38,7 +38,7 @@ namespace GoData.Core.Repositories
 
         public User GetItemById<IDType>(IDType Id)
         {
-            throw new NotImplementedException();
+            return _context.Users.Where(u => u.Id == Int32.Parse(Id.ToString())).FirstOrDefault();
         }
 
         public IEnumerable<User> GetItems(Expression<Func<User, bool>> condition)
@@ -47,6 +47,14 @@ namespace GoData.Core.Repositories
                 .Include(u => u.Roles)
                 .Include(u => u.Organizations)
                 .Include (u => u.Units);
+        }
+
+        public User UpdateItemAsync(User item)
+        {
+            _context.Users.Update(item);
+            _context.SaveChangesAsync();
+
+            return item;
         }
     }
 }

@@ -16,5 +16,7 @@ namespace GoData.Core.Repositories
         bool AddItemsAsync(IEnumerable<T> items);
 
         IEnumerable<T> GetItems(Expression<Func<T, bool>> condition);
+
+        T UpdateItemAsync(T item);
     }
 }

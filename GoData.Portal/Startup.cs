@@ -4,7 +4,9 @@ using GoData.Data.Contexts;
 using GoData.Entities.Entities;
 using GoData.Portal.Extensions;
 using GoData.Portal.Helpers;
+using GoData.Portal.Interfaces;
 using GoData.Portal.NinjectModules;
+using GoData.Portal.PageViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
 using Microsoft.AspNetCore.Builder;
@@ -90,6 +92,7 @@ namespace GoData.Portal
                 .WithConstructorArgument("_options", new DbContextOptionsBuilder<DefaultContext>()
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).Options);
 
+            
             kernel.Bind<IRepository<Organization>>().To<OrganizationRepository>().InScope(RequestScope);
             kernel.Bind<IRepository<Unit>>().To<UnitRepository>().InScope(RequestScope);
             kernel.Bind<IRepository<User>>().To<UserRepository>().InScope(RequestScope);

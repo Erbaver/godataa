@@ -44,5 +44,10 @@ namespace GoData.Core.Repositories
         {
             return _context.DataForms.Where(condition);
         }
+
+        public DataForm UpdateItemAsync(DataForm item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

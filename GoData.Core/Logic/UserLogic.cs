@@ -19,7 +19,7 @@ namespace GoData.Core.Logic
         {
             System.Linq.Expressions.Expression<Func<User, bool>> expression = u => u.UserObjectId == objectId;
 
-            return _repository.GetItems(expression)?.FirstOrDefault() != null 
+            return _repository.GetItems(expression)?.FirstOrDefault() != null
                 ? _repository.GetItems(expression).FirstOrDefault() : null;
         }
 
@@ -28,10 +28,20 @@ namespace GoData.Core.Logic
             //make checks
             if (user.UserObjectId == null || user.Roles == null)
                 throw new ArgumentNullException();
-            
+
 
             return await _repository.AddItemAsync(user);
 
+        }
+
+        public User GetUserById(int userId)
+        {
+            return _repository.GetItemById<int>(userId);
+        }
+
+        public User UpdateUserAsync(User user)
+        {
+            return _repository.UpdateItemAsync(user);
         }
     }
 }

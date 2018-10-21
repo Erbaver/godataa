@@ -4,6 +4,7 @@ using GoData.Entities.Entities;
 using GoData.Portal.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -54,67 +55,33 @@ namespace GoData.Portal.Controllers
                 organization.Units = new List<OrganizationUnit>();
                 organization.Members = new List<OrganizationMember>();
 
+                var userId = Request?.Headers["User"];
+
+                var user = _userLogic.GetUserById(Int32.Parse(userId.Value));
+
+                //Create a Unit and Assign a new member to it
                 var unit = new Unit
                 {
                     Name = "Default Unit",
                     Members = new List<UnitMember>()
                 };
 
+                unit.Members.Add(new UnitMember
+                {
+                    User = user,
+                    Unit = unit
+                });
+
                 organization.Units.Add(new OrganizationUnit
                 {
                     Unit = unit
                 });
 
-                var userClaims = User.Identity as System.Security.Claims.ClaimsIdentity;
-
-                string objectId = userClaims?.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
-
-                var user = _userLogic.GetUserByUserObjectId(objectId);
-
-                if (user != null)
+                organization.Members.Add(new OrganizationMember
                 {
-                    var x = user.Organizations;
-
-                    organization.Members.Add(new OrganizationMember
-                    {
-                        User = user,
-                        Organization = organization
-                    });
-
-                    unit.Members.Add(new UnitMember
-                    {
-                        User = user,
-                        Unit = unit
-                    });
-                }
-                else
-                {
-                    user = new User
-                    {
-                        UserObjectId = objectId,
-
-                        Roles = new List<Role>
-                        {
-                            new Role { RoleName = Entities.Enums.Roles.Admin },
-                            new Role { RoleName = Entities.Enums.Roles.DataCollector },
-                            new Role { RoleName = Entities.Enums.Roles.Owner },
-                            new Role { RoleName = Entities.Enums.Roles.QualityControl},
-                            new Role { RoleName = Entities.Enums.Roles.Reader }
-                        }
-                    };
-
-                    organization.Members.Add(new OrganizationMember
-                    {
-                        User = user,
-                        Organization = organization
-                    });
-
-                    unit.Members.Add(new UnitMember
-                    {
-                        User = user,
-                        Unit = unit
-                    });
-                }
+                    User = user,
+                    Organization = organization
+                });
 
                 organization = await _organizationLogic.CreateOrganization(organization);
 

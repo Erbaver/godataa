@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GoData.Core.Logic;
+using GoData.Entities.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -8,7 +10,13 @@ namespace GoData.Portal.Helpers
 {
     public class UserHelper
     {
+        public UserHelper(UserLogic userLogic)
+        {
+            _userLogic = userLogic;
+        }
+
         private Dictionary<string, string> _userProperties;
+        private UserLogic _userLogic;
 
         public Dictionary<string, string> GetUserProperties(ClaimsPrincipal user)
         {
@@ -27,5 +35,6 @@ namespace GoData.Portal.Helpers
 
             return this._userProperties;
         }
+
     }
 }

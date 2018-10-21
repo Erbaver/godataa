@@ -47,5 +47,10 @@ namespace GoData.Core.Repositories
         {
            return  _context.Organizations.Where(condition);
         }
+
+        public Organization UpdateItemAsync(Organization item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

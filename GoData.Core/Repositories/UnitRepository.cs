@@ -43,5 +43,10 @@ namespace GoData.Core.Repositories
         {
             return _context.Units.Where(condition);
         }
+
+        public Unit UpdateItemAsync(Unit item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
