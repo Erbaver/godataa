@@ -8,12 +8,9 @@ using System.Threading.Tasks;
 
 namespace GoData.Portal.PageViewModels.SettingsViewModels
 {
-    public class IndexPageViewModel : BasePageViewModel
+    public class IndexPageViewModel : DefaultPageViewModel
     {
-        public IndexPageViewModel(int userId, UserLogic userLogic) : base(userId, userLogic)
-        {
-        }
-
+     
         public IEnumerable<Organization> Organizations { get; set; }
 
     }

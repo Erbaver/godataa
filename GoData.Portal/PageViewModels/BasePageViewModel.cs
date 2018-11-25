@@ -1,5 +1,6 @@
 ﻿using GoData.Core.Logic;
 using GoData.Entities.Entities;
+using GoData.Portal.Helpers;
 using GoData.Portal.Interfaces;
 using Ninject;
 using System;
@@ -8,9 +9,9 @@ using System.Linq;
 
 namespace GoData.Portal.PageViewModels
 {
-    public class BasePageViewModel : IPageViewModel
+    public class BasePageViewModel<T> : IPageViewModel
     {
-        
+        // TODO Clean this up
         public UserLogic _userLogic { private get; set; }
 
         private int _userId;
@@ -19,11 +20,14 @@ namespace GoData.Portal.PageViewModels
         {
             _userId = userId;
             _userLogic = userLogic;
+
         }
 
         public string PageName { get; set; }
 
-        public IEnumerable<Unit> Units { get { return GetUnits(_userId);  }}
+        public IEnumerable<Unit> Units { get { return GetUnits(_userId);  }} 
+
+        public T ActionViewModel { get; set; }
 
         public IEnumerable<Unit> GetUnits(int id)
         {

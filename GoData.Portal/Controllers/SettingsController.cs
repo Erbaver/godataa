@@ -1,4 +1,5 @@
 ﻿using GoData.Core.Logic;
+using GoData.Portal.PageViewModels;
 using GoData.Portal.PageViewModels.SettingsViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ namespace GoData.Portal.Controllers
     {
         private OrganizationLogic _organizationLogic;
         private UserLogic _userLogic;
+        BasePageViewModel<DefaultPageViewModel> _viewModel;
 
         public SettingsController(
             OrganizationLogic organizationLogic,
@@ -22,12 +24,10 @@ namespace GoData.Portal.Controllers
         {
             var userId = Int32.Parse(Request.Headers["User"].ToString());
 
-            var pageModel = new IndexPageViewModel(userId, _userLogic);
+            var pageModel = new IndexPageViewModel();
 
 
             pageModel.Organizations = _organizationLogic.GetOrganizationsByUserId(userId);
-
-            pageModel.PageName = "Hello World";
 
             return View(pageModel);
         }

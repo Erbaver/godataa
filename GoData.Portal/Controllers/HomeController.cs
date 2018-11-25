@@ -1,10 +1,13 @@
 ﻿using GoData.Core.Logic;
 using GoData.Entities.Entities;
 using GoData.Portal.Helpers;
+using GoData.Portal.Interfaces;
 using GoData.Portal.Models;
+using GoData.Portal.PageViewModels;
 using GoData.Portal.PageViewModels.HomePageViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,30 +16,20 @@ using System.Linq;
 namespace GoData.Portal.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private UserLogic _userLogic;
-        private UserHelper _userHelper;
-        private OrganizationLogic _organizationLogic;
-
         public HomeController(
-            UserHelper helper,
-            UserLogic userLogic,
-            OrganizationLogic organizationLogic)
+            OrganizationLogic organizationLogic,
+            UserLogic userLogic)
         {
-            _userLogic = userLogic;
-            _userHelper = helper;
             _organizationLogic = organizationLogic;
+            _userLogic = userLogic;
         }
 
         public IActionResult Index()
         {
-            var userId = Int32.Parse(Request.Headers["User"].ToString());
-
-            var model = new IndexPageViewModel(userId, _userLogic);
-
-            
-
+            _viewModel.ActionViewModel = new IndexPageViewModel();
+           
             var organizations = _organizationLogic.GetOrganizationsByUserId(userId);
 
             if (organizations.Count() < 1)
@@ -44,7 +37,7 @@ namespace GoData.Portal.Controllers
                 return RedirectToAction("Create", "Organizations");
             }
 
-            return View(model);
+            return View(_viewModel);
         }
 
         public IActionResult About()
@@ -71,5 +64,7 @@ namespace GoData.Portal.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+       
     }
 }
