@@ -17,7 +17,6 @@ namespace GoData.Portal.Controllers
         public UserLogic _userLogic;
         public UserHelper _userHelper;
         public OrganizationLogic _organizationLogic;
-        
         public BasePageViewModel<DefaultPageViewModel> _viewModel;
         public int userId;
 
